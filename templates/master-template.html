@@ -1,0 +1,41 @@
+{% load static %}
+
+<!doctype html>
+<html lang="fr">
+<head>
+    {% block meta %}
+        {% include 'config/meta' %}
+    {% endblock %}
+
+    <title>
+        {% block title %}
+            HTMX - Inititation
+        {% endblock %}
+    </title>
+
+    {% block htmx %}
+        {% include 'config/htmx-cdn.html' %}
+    {% endblock %}
+
+    {% block bootstrap_icons %}
+        {% include "config/bootstrap-icons.html" %}
+    {% endblock %}
+
+    {% include 'config/bootstrap-css.html' %}
+
+    {% include 'config/custom-css.html' %}
+</head>
+<body>
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+
+<div class="container">
+    {% block main %}
+    {% endblock %}
+</div>
+
+
+{% include 'config/bootstrap-js.html' %}
+</body>
+</html>

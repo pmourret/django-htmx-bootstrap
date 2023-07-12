@@ -1,0 +1,26 @@
+.alert-success {
+    margin-top: 1em;
+    padding: 5px;
+    color: #0f5132;
+    background: #d1e7dd;
+
+    border: darkgreen solid 1px;
+    border-radius: 10px;
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-error {
+    margin-top: 1em;
+    padding: 5px;
+
+    color: darkred;
+    background: #f8d7da;
+    border: darkred solid 1px;
+    border-radius: 10px;
+
+    text-align: center;
+    font-weight: bold;
+
+}
