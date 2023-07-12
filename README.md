@@ -63,10 +63,31 @@ Les valeurs de cet attribut sont :
 | none        | Ne colle pas le contenu de la réponse                        |
 
 ### L'attribut : ``hx-delete``
+L'attribut [``hx-delete``](https://htmx.org/attributes/hx-delete/) permet à un élément de déclencher 
+une requête **DELETE** vers l'url spécifiée.
 
 ### L'attribut : ``hx-confirm``
 
+L'attribut [``hx-confirm``](https://htmx.org/attributes/hx-confirm/) permet la confirmation d'une action
+avant son exécution en affichant à l'écran une alerte. 
+Django utilisant un token **CSRF** pour valider les formulaires une configuration est nécessaire.
 
+#### Cas n°1 : Dans la balise ``<body>``
+````html
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <!-- Some HTML right here -->
+</body>
+````
+
+#### Cas n°2 : Dans un script JS
+````html
+
+<script>
+    document.body.addEventListener('htmx:configrequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'
+    })
+</script>
+````
 
 ## Les triggers modifiers et les transitions CSS
 
