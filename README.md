@@ -9,6 +9,8 @@
   * [HX-TRIGGER](#lattribut--hx-trigger)
   * [HX-TARGET](#lattribut--hx-target)
   * [HX-SWAP](#lattribut--hx-swap)
+  * [HX-DELETE](#lattribut--hx-delete)
+  * [HX-CONFIRM](#lattribut--hx-confirm)
 * [Trigger modifiers & transitions CSS](#les-triggers-modifiers-et-les-transitions-css)
 
 ## Description du dépôt
@@ -59,6 +61,12 @@ Les valeurs de cet attribut sont :
 | afterend    | Insére la réponse après l'élément cible                      |
 | delete      | Supprime l'élément cible qu'importe la réponse               |
 | none        | Ne colle pas le contenu de la réponse                        |
+
+### L'attribut : ``hx-delete``
+
+### L'attribut : ``hx-confirm``
+
+
 
 ## Les triggers modifiers et les transitions CSS
 

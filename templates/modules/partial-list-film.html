@@ -1,0 +1,19 @@
+{% if films %}
+    {% for film in films %}
+        <div class="row mt-1">
+            <div class="col text-start">{{ film.name }}</div>
+            <div class="col text-end">
+                <button type="button"
+                        class="btn btn-danger rounded"
+                        hx-delete="{% url 'delete-film' film.pk %}"
+                        hx-target="#film-list"
+                        hx-confirm="Are you sure to delete this item ?"
+                >
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p class="h5">There is no films on your list right now.</p>
+{% endif %}

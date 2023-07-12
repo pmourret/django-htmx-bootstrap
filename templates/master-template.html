@@ -4,7 +4,7 @@
 <html lang="fr">
 <head>
     {% block meta %}
-        {% include 'config/meta' %}
+        {% include 'config/meta.html' %}
     {% endblock %}
 
     <title>
@@ -14,7 +14,7 @@
     </title>
 
     {% block htmx %}
-        {% include 'config/htmx-cdn.html' %}
+        {% include 'config/htmx-js.html' %}
     {% endblock %}
 
     {% block bootstrap_icons %}
@@ -23,19 +23,27 @@
 
     {% include 'config/bootstrap-css.html' %}
 
-    {% include 'config/custom-css.html' %}
+    {#    {% include 'config/custom-css.html' %}#}
 </head>
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% block navbar %}
     {% include 'components/navbar.html' %}
 {% endblock %}
 
-<div class="container">
+<div class="container mt-3">
     {% block main %}
     {% endblock %}
 </div>
 
 
 {% include 'config/bootstrap-js.html' %}
+
+{#{% include 'config/htmx-auth-token.html' %}#}
+
+<script>
+    document.body.addEventListener('htmx:configrequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
 </body>
 </html>

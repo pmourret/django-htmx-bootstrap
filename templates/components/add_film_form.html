@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-body">
+        <form>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="film_title" class="form-label">Your film :</label>
+                <input type="text" class="form-control" id="film_title" name="film_name">
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col text-end">
+                    <button type="submit" class="btn btn-success rounded"
+                            hx-post="{% url 'add_film' %}"
+                            hx-target="#film-list">
+                        <i class="bi bi-plus-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+</div>

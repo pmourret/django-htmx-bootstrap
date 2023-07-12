@@ -1,0 +1,14 @@
+{% extends 'master-template.html' %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col">
+            {% include "components/add_film_form.html" %}
+        </div>
+        <div class="col" id="film-list">
+            {% include "modules/partial-list-film.html" %}
+        </div>
+    </div>
+
+{% endblock %}
