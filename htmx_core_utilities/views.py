@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.views.decorators.http import require_http_methods
+from django.contrib import messages
 from films.models import Film
 
 
@@ -44,19 +46,24 @@ def check_password_cohesion(request):
                             f"</div>")
 
 
+@login_required
 def add_film(request):
     # Récupération de l'input utilisateur
     name = request.POST.get('film_name')
+
     # Création d'une nouvelle entrée en BDD
-    film = Film.objects.create(name=name)
+    film = Film.objects.get_or_create(name=name)[0]
     # Ajout du nouveau film à la liste de l'utilisateur connecté
     request.user.films.add(film)
 
     # Retourne un template avec tous les films de l'utilisateur
     films = request.user.films.all()
+    messages.success(request, f"New film added : {name}")
     return render(request, 'modules/partial-list-film.html', {"films": films})
 
 
+@login_required
+@require_http_methods(['DELETE'])
 def delete_film(request, pk):
     # Suppression du film dans la liste de l'utilisateur
     request.user.films.remove(pk)
@@ -66,6 +73,14 @@ def delete_film(request, pk):
     return render(request, 'modules/partial-list-film.html', {"films": films})
 
 
+def search_film(request):
+    search_text = request.POST.get('search_film')
+    userfilms = request.user.films.all()
+
+    results = Film.objects.filter(name__icontains=search_text).exclude(name__in=userfilms.values_list('name', flat=True))
+    return render(request, "modules/partial-search-results.html", context={"results": results})
 
 
+def clear_messages(request):
+    return HttpResponse('')
 

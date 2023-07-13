@@ -1,21 +1,41 @@
 <div class="card">
-    <div class="card-body">
+    <div class="card-body m-2">
         <form>
             {% csrf_token %}
-            <div class="mb-3">
-                <label for="film_title" class="form-label">Your film :</label>
-                <input type="text" class="form-control" id="film_title" name="film_name">
-            </div>
+
             <div class="row">
-                <div class="col"></div>
-                <div class="col text-end">
-                    <button type="submit" class="btn btn-success rounded"
+                <div class="mb-3 col-9">
+                    <input type="text" class="form-control" id="film_title" name="film_name"
+                           placeholder="Manually enter a film...">
+                </div>
+                <div class="col-3 text-end">
+                    <button type="submit" class="btn btn-success rounded col-12"
                             hx-post="{% url 'add_film' %}"
                             hx-target="#film-list">
                         <i class="bi bi-plus-circle"></i>
                     </button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col text-center">
+                    <p>OR</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="search_film_title" name="search_film"
+                           hx-post="{% url 'search-film' %}"
+                           hx-target="#search-film-results"
+                           hx-trigger="keyup delay:500ms"
+                           placeholder="Search for a film..."
+                    >
+                </div>
+            </div>
+            <div id="search-film-results"></div>
+            {#            <div class="row mt-3">#}
+            {#                <div class="col"></div>#}
+            {##}
+            {#            </div>#}
 
 
         </form>

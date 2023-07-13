@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -29,7 +30,7 @@ class RegisterView(FormView):
         return super().form_valid(form)
 
 
-class FilmList(ListView):
+class FilmList(LoginRequiredMixin, ListView):
     template_name = 'pages/film-list.html'
     model = Film
     context_object_name = 'films'
